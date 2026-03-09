@@ -5,12 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Menu Prise de Masse — Rayane</title>
+<title>Prise de Masse — Rayane</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
   body {
     font-family: 'DM Sans', -apple-system, sans-serif;
     background: linear-gradient(160deg, #0D0D0D 0%, #1A1A2E 40%, #16213E 100%);
@@ -19,220 +17,157 @@
     padding: 24px 16px 48px;
     -webkit-font-smoothing: antialiased;
   }
-
   .header { text-align: center; margin-bottom: 28px; }
-
   .badge {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
-    background: rgba(255,107,53,0.15);
-    border: 1px solid rgba(255,107,53,0.3);
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #FF6B35;
-    margin-bottom: 12px;
-    font-weight: 600;
+    display: inline-block; padding: 6px 16px; border-radius: 20px;
+    background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.3);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: #FF6B35; margin-bottom: 12px; font-weight: 600;
   }
-
   h1 {
-    font-size: 26px;
-    font-weight: 800;
+    font-size: 26px; font-weight: 800;
     background: linear-gradient(135deg, #FFFFFF 0%, #FF6B35 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px;
-    margin-bottom: 4px;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px; margin-bottom: 4px;
   }
-
   .subtitle { font-size: 13px; color: #666; }
 
-  /* Toggle */
+  /* Main Nav */
+  .main-nav { display: flex; justify-content: center; gap: 6px; margin-bottom: 24px; }
+  .main-nav-btn {
+    padding: 10px 16px; border-radius: 12px; border: none;
+    font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer;
+    transition: all 0.3s ease; background: rgba(255,255,255,0.05); color: #666;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  .main-nav-btn.active { background: #FF6B35; color: #fff; }
+  .main-nav-btn .nav-icon { font-size: 18px; }
+
+  /* Sub toggle */
   .toggle-wrap { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
-
   .toggle-btn {
-    padding: 8px 20px;
-    border-radius: 10px;
-    border: none;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.07);
-    color: #777;
+    padding: 8px 20px; border-radius: 10px; border: none;
+    font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer;
+    transition: all 0.3s ease; background: rgba(255,255,255,0.07); color: #777;
   }
-  .toggle-btn.active { background: #FF6B35; color: #fff; }
+  .toggle-btn.active { background: rgba(255,107,53,0.25); color: #FF6B35; }
 
-  /* Day Selector */
-  .day-selector {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
+  /* Day selector */
+  .day-selector { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
   .day-btn {
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 2px solid transparent;
-    background: rgba(255,255,255,0.04);
-    color: #666;
-    font-size: 11px;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    min-width: 56px;
+    padding: 10px 12px; border-radius: 12px; border: 2px solid transparent;
+    background: rgba(255,255,255,0.04); color: #666; font-size: 11px; font-weight: 500;
+    font-family: inherit; cursor: pointer; transition: all 0.25s ease;
+    display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 56px;
   }
-  .day-btn.active {
-    border-color: #FF6B35;
-    background: rgba(255,107,53,0.15);
-    color: #FF6B35;
-    font-weight: 700;
-  }
+  .day-btn.active { border-color: #FF6B35; background: rgba(255,107,53,0.15); color: #FF6B35; font-weight: 700; }
   .day-btn .emoji { font-size: 16px; }
 
-  /* Day Header */
-  .day-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
+  /* Day header */
+  .day-header { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px; }
   .day-header h2 { font-size: 22px; font-weight: 700; color: #fff; }
-
-  .tag {
-    padding: 4px 12px;
-    border-radius: 8px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
+  .tag { padding: 4px 12px; border-radius: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
   .tag-training { background: #FF6B35; color: #fff; }
   .tag-rest { background: #2D4A3E; color: #C8E6C0; }
   .tag-prep { background: #8B6914; color: #FFF8DC; }
 
-  /* Meals */
-  .meals { display: flex; flex-direction: column; gap: 12px; max-width: 520px; margin: 0 auto; }
-
-  .meal-card {
-    background: rgba(255,255,255,0.04);
-    border-radius: 16px;
-    padding: 16px 18px;
-    border: 1px solid rgba(255,255,255,0.06);
-    opacity: 0;
-    transform: translateY(12px);
+  /* Cards */
+  .cards { display: flex; flex-direction: column; gap: 12px; max-width: 520px; margin: 0 auto; }
+  .card {
+    background: rgba(255,255,255,0.04); border-radius: 16px; padding: 16px 18px;
+    border: 1px solid rgba(255,255,255,0.06); opacity: 0; transform: translateY(12px);
     animation: fadeSlideIn 0.4s ease forwards;
   }
-  .meal-card:nth-child(1) { animation-delay: 0s; }
-  .meal-card:nth-child(2) { animation-delay: 0.08s; }
-  .meal-card:nth-child(3) { animation-delay: 0.16s; }
-  .meal-card:nth-child(4) { animation-delay: 0.24s; }
-
-  .meal-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
+  .card-label { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .card-label .icon { font-size: 18px; }
+  .card-label span:last-child {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; color: #FF6B35;
   }
-  .meal-label .icon { font-size: 18px; }
-  .meal-label span:last-child {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #FF6B35;
-  }
-  .meal-desc { font-size: 14px; line-height: 1.6; color: #bbb; }
+  .card-desc { font-size: 14px; line-height: 1.6; color: #bbb; }
 
-  /* Rules */
+  /* Exercise card */
+  .exercise-card {
+    background: rgba(255,255,255,0.04); border-radius: 16px; padding: 16px 18px;
+    border: 1px solid rgba(255,255,255,0.06); opacity: 0; transform: translateY(12px);
+    animation: fadeSlideIn 0.4s ease forwards; cursor: pointer;
+  }
+  .exercise-header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .exercise-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 8px; background: rgba(255,107,53,0.15);
+    color: #FF6B35; font-size: 13px; font-weight: 800; flex-shrink: 0;
+  }
+  .exercise-info { flex: 1; margin-left: 12px; }
+  .exercise-name { font-size: 15px; font-weight: 700; color: #eee; margin-bottom: 4px; }
+  .exercise-sets { font-size: 12px; color: #888; font-weight: 600; }
+  .exercise-weight { font-size: 11px; color: #FF6B35; margin-top: 2px; }
+  .exercise-chevron { color: #555; font-size: 14px; margin-top: 4px; transition: transform 0.3s; }
+  .exercise-chevron.open { transform: rotate(180deg); }
+  .exercise-detail {
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 13px; line-height: 1.7; color: #999; display: none;
+  }
+  .exercise-detail.show { display: block; }
+
+  /* Warmup */
+  .warmup-card {
+    background: rgba(255,107,53,0.06); border-radius: 14px; padding: 14px 16px;
+    border: 1px solid rgba(255,107,53,0.12); margin-bottom: 12px; max-width: 520px; margin-left: auto; margin-right: auto;
+    opacity: 0; transform: translateY(12px); animation: fadeSlideIn 0.3s ease forwards;
+  }
+  .warmup-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #FF6B35; margin-bottom: 6px; }
+  .warmup-desc { font-size: 13px; color: #aaa; line-height: 1.5; }
+
+  /* Rules box */
   .rules {
-    max-width: 520px;
-    margin: 28px auto 0;
-    padding: 16px 18px;
-    border-radius: 16px;
-    background: rgba(255,107,53,0.06);
-    border: 1px solid rgba(255,107,53,0.15);
+    max-width: 520px; margin: 28px auto 0; padding: 16px 18px;
+    border-radius: 16px; background: rgba(255,107,53,0.06); border: 1px solid rgba(255,107,53,0.15);
   }
-  .rules-title {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #FF6B35;
-    margin-bottom: 10px;
-  }
-  .rule {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 13px;
-    color: #aaa;
-    line-height: 1.5;
-    margin-bottom: 5px;
-  }
+  .rules-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #FF6B35; margin-bottom: 10px; }
+  .rule { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #aaa; line-height: 1.5; margin-bottom: 5px; }
   .rule-num { color: #FF6B35; font-weight: 700; font-size: 11px; margin-top: 1px; min-width: 16px; }
+
+  /* Workout day selector */
+  .workout-day-selector { display: flex; gap: 8px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+  .workout-day-btn {
+    padding: 12px 20px; border-radius: 14px; border: 2px solid transparent;
+    background: rgba(255,255,255,0.04); color: #666; font-size: 13px; font-weight: 600;
+    font-family: inherit; cursor: pointer; transition: all 0.25s ease;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .workout-day-btn.active { border-color: #FF6B35; background: rgba(255,107,53,0.15); color: #FF6B35; }
+  .workout-day-btn .w-emoji { font-size: 20px; }
+  .workout-day-btn .w-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
   /* Grocery */
   .grocery-list { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
-
   .grocery-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.06);
-    opacity: 0;
-    transform: translateY(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06); opacity: 0; transform: translateY(10px);
     animation: fadeSlideIn 0.3s ease forwards;
   }
   .grocery-item .left { display: flex; align-items: center; gap: 10px; }
   .grocery-item .left .cat { font-size: 16px; }
   .grocery-item .left .name { font-size: 13px; color: #ccc; }
   .grocery-item .price { font-size: 13px; font-weight: 700; color: #FF6B35; white-space: nowrap; }
-
   .total-bar {
-    margin-top: 16px;
-    padding: 14px 18px;
-    border-radius: 14px;
+    margin-top: 16px; padding: 14px 18px; border-radius: 14px;
     background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,107,53,0.05));
-    border: 1px solid rgba(255,107,53,0.25);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border: 1px solid rgba(255,107,53,0.25); display: flex; justify-content: space-between; align-items: center;
   }
   .total-bar .label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #ccc; }
   .total-bar .amount { font-size: 20px; font-weight: 800; color: #FF6B35; }
-
   .home-box {
-    margin-top: 16px;
-    padding: 14px 18px;
-    border-radius: 14px;
-    background: rgba(45,74,62,0.2);
-    border: 1px solid rgba(45,74,62,0.4);
+    margin-top: 16px; padding: 14px 18px; border-radius: 14px;
+    background: rgba(45,74,62,0.2); border: 1px solid rgba(45,74,62,0.4);
   }
-  .home-box .home-title {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #7BAF6E;
-    margin-bottom: 8px;
-  }
+  .home-box .home-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #7BAF6E; margin-bottom: 8px; }
   .home-box p { font-size: 12px; color: #888; line-height: 1.6; }
 
   .hidden { display: none; }
+  .container { max-width: 520px; margin: 0 auto; }
 
   @keyframes fadeSlideIn {
     from { opacity: 0; transform: translateY(12px); }
@@ -243,46 +178,73 @@
 <body>
 
 <div class="header">
-  <div class="badge">Plan nutritionnel · Prise de masse</div>
-  <h1>Menu de la Semaine</h1>
+  <div class="badge">Plan nutritionnel & entraînement</div>
+  <h1>Prise de Masse</h1>
   <p class="subtitle">Semaine du 9 au 15 mars 2026</p>
 </div>
 
-<div class="toggle-wrap">
-  <button class="toggle-btn active" id="btn-meals" onclick="showSection('meals')">Repas</button>
-  <button class="toggle-btn" id="btn-grocery" onclick="showSection('grocery')">Liste de courses</button>
+<!-- Main Navigation -->
+<div class="main-nav">
+  <button class="main-nav-btn active" id="nav-food" onclick="showMain('food')">
+    <span class="nav-icon">🍽️</span>
+    <span>Nutrition</span>
+  </button>
+  <button class="main-nav-btn" id="nav-workout" onclick="showMain('workout')">
+    <span class="nav-icon">💪</span>
+    <span>Entraînement</span>
+  </button>
 </div>
 
-<!-- MEALS SECTION -->
-<div id="section-meals">
-  <div class="day-selector" id="day-selector"></div>
-  <div class="day-header" id="day-header"></div>
-  <div class="meals" id="meals-container"></div>
+<!-- ============ FOOD SECTION ============ -->
+<div id="main-food">
+  <div class="toggle-wrap">
+    <button class="toggle-btn active" id="btn-meals" onclick="showFoodSection('meals')">Repas</button>
+    <button class="toggle-btn" id="btn-grocery" onclick="showFoodSection('grocery')">Courses</button>
+  </div>
 
-  <div class="rules">
-    <div class="rules-title">⚡ Règles de la semaine</div>
-    <div class="rule"><span class="rule-num">01</span><span>4 prises par jour minimum, même petites.</span></div>
-    <div class="rule"><span class="rule-num">02</span><span>Jours d'entraînement → flocons + beurre de cacahuète obligatoire au petit-déj.</span></div>
-    <div class="rule"><span class="rule-num">03</span><span>Batch cooking : cuire poulet + riz pour 2-3 jours d'avance.</span></div>
+  <div id="section-meals">
+    <div class="day-selector" id="day-selector"></div>
+    <div class="day-header" id="day-header"></div>
+    <div class="cards" id="meals-container"></div>
+    <div class="rules">
+      <div class="rules-title">⚡ Règles de la semaine</div>
+      <div class="rule"><span class="rule-num">01</span><span>4 prises par jour minimum, même petites.</span></div>
+      <div class="rule"><span class="rule-num">02</span><span>Jours d'entraînement → flocons + beurre de cacahuète obligatoire au petit-déj.</span></div>
+      <div class="rule"><span class="rule-num">03</span><span>Batch cooking : cuire poulet + riz pour 2-3 jours d'avance.</span></div>
+    </div>
+  </div>
+
+  <div id="section-grocery" class="hidden">
+    <div class="grocery-list" id="grocery-list"></div>
+    <div class="total-bar container">
+      <span class="label">Total estimé</span>
+      <span class="amount">~41-43€</span>
+    </div>
+    <div class="home-box container">
+      <div class="home-title">Déjà à la maison</div>
+      <p>Riz · Pâtes · Attiéké · Huile · Épices · Nutella · Fromage · Beurre · Ketchup · Mayo · Moutarde · Crème fraîche · Corn Flakes</p>
+    </div>
   </div>
 </div>
 
-<!-- GROCERY SECTION -->
-<div id="section-grocery" class="hidden">
-  <div class="grocery-list" id="grocery-list"></div>
-
-  <div class="total-bar" style="max-width:520px;margin:16px auto 0;">
-    <span class="label">Total estimé</span>
-    <span class="amount">~41-43€</span>
-  </div>
-
-  <div class="home-box" style="max-width:520px;margin:16px auto 0;">
-    <div class="home-title">Déjà à la maison</div>
-    <p>Riz · Pâtes · Attiéké · Huile · Épices · Nutella · Fromage · Beurre · Ketchup · Mayo · Moutarde · Crème fraîche · Corn Flakes</p>
+<!-- ============ WORKOUT SECTION ============ -->
+<div id="main-workout" class="hidden">
+  <div class="workout-day-selector" id="workout-day-selector"></div>
+  <div id="workout-header"></div>
+  <div id="workout-warmup"></div>
+  <div class="cards" id="workout-container"></div>
+  <div class="rules" id="workout-rules">
+    <div class="rules-title">📈 Progression</div>
+    <div class="rule"><span class="rule-num">01</span><span>Chaque semaine, ajoute 1-2 reps ou 0,5-1 kg par exercice.</span></div>
+    <div class="rule"><span class="rule-num">02</span><span>Repos : 60-90 secondes entre chaque série.</span></div>
+    <div class="rule"><span class="rule-num">03</span><span>Note tes poids dans ton téléphone pour suivre ta progression.</span></div>
+    <div class="rule"><span class="rule-num">04</span><span>Si 12 reps sont faciles, monte le poids à la séance suivante.</span></div>
   </div>
 </div>
 
 <script>
+// =================== DATA ===================
+
 const days = [
   {
     name: "Lundi", short: "Lun", tag: "Entraînement", tagClass: "tag-training", emoji: "🔥",
@@ -365,78 +327,232 @@ const groceries = [
   { cat: "🥬", name: "Poivrons x2", price: "~1,50€" },
 ];
 
+const workoutDays = [
+  {
+    name: "Lundi", label: "PUSH", emoji: "🏋️", subtitle: "Poitrine · Épaules · Triceps",
+    warmup: "5 min de vélo ou elliptique + rotations d'épaules",
+    exercises: [
+      {
+        name: "Développé couché haltères",
+        sets: "4 séries × 10 reps",
+        weight: "Haltères réglables ~8-12 kg/main",
+        desc: "Allongé sur le dos sur le banc. Un haltère dans chaque main, bras tendus au-dessus de la poitrine. Descends les haltères de chaque côté de ta poitrine en pliant les coudes, puis pousse vers le haut. Travaille les pectoraux."
+      },
+      {
+        name: "Développé épaules haltères",
+        sets: "3 séries × 10 reps",
+        weight: "Haltères réglables ~6-10 kg",
+        desc: "Assis sur le banc, un haltère dans chaque main au niveau des oreilles, coudes pliés. Pousse les haltères vers le plafond puis redescends. Travaille les épaules."
+      },
+      {
+        name: "Élévations latérales",
+        sets: "3 séries × 12 reps",
+        weight: "Haltères bleues ou noires ~3-5 kg",
+        desc: "Debout, un haltère léger dans chaque main le long du corps. Lève les bras sur les côtés jusqu'à hauteur des épaules (comme un oiseau qui déploie ses ailes), puis redescends doucement. Dessine les épaules."
+      },
+      {
+        name: "Pompes classiques",
+        sets: "3 séries × max de reps",
+        weight: "Poids du corps",
+        desc: "Mains au sol, écartées un peu plus large que les épaules, corps droit de la tête aux pieds. Descends la poitrine vers le sol en pliant les coudes, puis repousse. Si c'est trop dur au début, mets les genoux au sol."
+      },
+      {
+        name: "Extensions triceps au-dessus de la tête",
+        sets: "3 séries × 12 reps",
+        weight: "Un haltère à deux mains",
+        desc: "Debout, tu tiens un seul haltère à deux mains derrière la tête, coudes pointés vers le plafond. Tends les bras vers le haut puis redescends derrière la tête. Travaille l'arrière du bras (triceps)."
+      }
+    ]
+  },
+  {
+    name: "Mercredi", label: "PULL", emoji: "🔗", subtitle: "Dos · Biceps",
+    warmup: "5 min elliptique + rotations de bras",
+    exercises: [
+      {
+        name: "Rowing haltère un bras",
+        sets: "4 séries × 10 reps/bras",
+        weight: "Haltères réglables ~10-15 kg",
+        desc: "Un genou et une main sur le banc, l'autre pied au sol. Tiens un haltère dans la main libre, bras pendant vers le sol. Tire l'haltère vers ta hanche comme si tu tirais un tiroir, puis redescends. Travaille le dos."
+      },
+      {
+        name: "Rowing deux haltères penché",
+        sets: "3 séries × 10 reps",
+        weight: "Haltères réglables ~8-12 kg",
+        desc: "Debout, penché en avant (dos droit, genoux légèrement pliés), un haltère dans chaque main qui pend vers le sol. Tire les deux haltères vers ton ventre en serrant les omoplates, puis redescends."
+      },
+      {
+        name: "Curl biceps",
+        sets: "3 séries × 12 reps",
+        weight: "Haltères noires ou réglables ~5-8 kg",
+        desc: "Debout, un haltère dans chaque main, bras le long du corps, paumes vers l'avant. Plie les coudes pour monter les haltères vers tes épaules, puis redescends doucement. Le classique pour les biceps."
+      },
+      {
+        name: "Curl marteau",
+        sets: "3 séries × 12 reps",
+        weight: "Mêmes haltères",
+        desc: "Exactement pareil que le curl biceps, sauf que tes paumes sont tournées vers l'intérieur (face à face), comme si tu tenais un marteau. Travaille une partie différente du biceps et l'avant-bras."
+      },
+      {
+        name: "Soulevé de terre roumain",
+        sets: "3 séries × 10 reps",
+        weight: "Haltères réglables ~10-15 kg",
+        desc: "Debout, un haltère dans chaque main devant les cuisses. Penche le buste en avant en poussant les fesses vers l'arrière, les haltères glissent le long des jambes. Descends jusqu'à sentir un étirement derrière les cuisses, puis remonte en serrant les fessiers. Dos droit tout le long."
+      }
+    ]
+  },
+  {
+    name: "Vendredi", label: "LEGS", emoji: "🦵", subtitle: "Jambes · Fessiers · Abdos",
+    warmup: "5 min tapis de course en marche rapide",
+    exercises: [
+      {
+        name: "Goblet squat",
+        sets: "4 séries × 12 reps",
+        weight: "Medicine ball 10 kg ou haltère",
+        desc: "Debout, tiens le medicine ball de 10 kg (ou un haltère) contre ta poitrine. Descends en pliant les genoux comme si tu t'asseyais sur une chaise invisible, cuisses parallèles au sol, puis remonte. Travaille cuisses et fessiers."
+      },
+      {
+        name: "Fentes avant haltères",
+        sets: "3 séries × 10 reps/jambe",
+        weight: "Haltères ~5-8 kg/main",
+        desc: "Debout, un haltère dans chaque main. Fais un grand pas en avant et plie les deux genoux pour descendre, le genou arrière frôle le sol. Repousse pour revenir debout. Alterne les jambes."
+      },
+      {
+        name: "Soulevé de terre roumain",
+        sets: "3 séries × 12 reps",
+        weight: "Haltères réglables ~10-15 kg",
+        desc: "Debout, un haltère dans chaque main devant les cuisses. Penche le buste en avant en poussant les fesses vers l'arrière, les haltères glissent le long des jambes. Descends jusqu'à sentir l'étirement, puis remonte. Dos droit."
+      },
+      {
+        name: "Mollets debout",
+        sets: "3 séries × 15 reps",
+        weight: "Haltères en main",
+        desc: "Debout avec des haltères dans les mains, monte sur la pointe des pieds le plus haut possible, tiens 1 seconde en haut, puis redescends."
+      },
+      {
+        name: "Crunchs",
+        sets: "3 séries × 15 reps",
+        weight: "Poids du corps",
+        desc: "Allongé sur le dos sur le tapis, genoux pliés, pieds au sol. Enroule le haut du corps pour décoller les épaules du sol (pas besoin de monter haut), puis redescends. Travaille les abdos."
+      },
+      {
+        name: "Planche",
+        sets: "3 × 30 secondes",
+        weight: "Poids du corps",
+        desc: "Face au sol, en appui sur les avant-bras et les pointes de pieds. Le corps forme une ligne droite. Tiens la position sans bouger. On augmentera chaque semaine. Travaille tout le gainage."
+      }
+    ]
+  }
+];
+
+// =================== STATE ===================
 let currentDay = 0;
+let currentWorkoutDay = 0;
+
+// =================== MAIN NAV ===================
+function showMain(section) {
+  document.getElementById('main-food').classList.toggle('hidden', section !== 'food');
+  document.getElementById('main-workout').classList.toggle('hidden', section !== 'workout');
+  document.getElementById('nav-food').classList.toggle('active', section === 'food');
+  document.getElementById('nav-workout').classList.toggle('active', section === 'workout');
+}
+
+// =================== FOOD ===================
+function showFoodSection(section) {
+  document.getElementById('section-meals').classList.toggle('hidden', section !== 'meals');
+  document.getElementById('section-grocery').classList.toggle('hidden', section !== 'grocery');
+  document.getElementById('btn-meals').classList.toggle('active', section === 'meals');
+  document.getElementById('btn-grocery').classList.toggle('active', section === 'grocery');
+}
 
 function buildDaySelector() {
-  const container = document.getElementById('day-selector');
-  container.innerHTML = days.map((d, i) =>
+  document.getElementById('day-selector').innerHTML = days.map((d, i) =>
     `<button class="day-btn ${i === currentDay ? 'active' : ''}" onclick="selectDay(${i})">
-      <span class="emoji">${d.emoji}</span>
-      <span>${d.short}</span>
+      <span class="emoji">${d.emoji}</span><span>${d.short}</span>
     </button>`
   ).join('');
 }
 
 function renderDay() {
   const day = days[currentDay];
-
   document.getElementById('day-header').innerHTML =
     `<h2>${day.name}</h2><span class="tag ${day.tagClass}">${day.tag}</span>`;
-
-  const container = document.getElementById('meals-container');
-  container.innerHTML = day.meals.map((m, i) =>
-    `<div class="meal-card" style="animation-delay:${i * 0.08}s">
-      <div class="meal-label">
-        <span class="icon">${m.icon}</span>
-        <span>${m.label}</span>
-      </div>
-      <p class="meal-desc">${m.desc}</p>
+  document.getElementById('meals-container').innerHTML = day.meals.map((m, i) =>
+    `<div class="card" style="animation-delay:${i * 0.08}s">
+      <div class="card-label"><span class="icon">${m.icon}</span><span>${m.label}</span></div>
+      <p class="card-desc">${m.desc}</p>
     </div>`
   ).join('');
 }
 
-function selectDay(i) {
-  currentDay = i;
-  buildDaySelector();
-  renderDay();
-}
+function selectDay(i) { currentDay = i; buildDaySelector(); renderDay(); }
 
 function buildGroceryList() {
-  const container = document.getElementById('grocery-list');
-  container.innerHTML = groceries.map((g, i) =>
+  document.getElementById('grocery-list').innerHTML = groceries.map((g, i) =>
     `<div class="grocery-item" style="animation-delay:${i * 0.03}s">
-      <div class="left">
-        <span class="cat">${g.cat}</span>
-        <span class="name">${g.name}</span>
-      </div>
+      <div class="left"><span class="cat">${g.cat}</span><span class="name">${g.name}</span></div>
       <span class="price">${g.price}</span>
     </div>`
   ).join('');
 }
 
-function showSection(section) {
-  const meals = document.getElementById('section-meals');
-  const grocery = document.getElementById('section-grocery');
-  const btnMeals = document.getElementById('btn-meals');
-  const btnGrocery = document.getElementById('btn-grocery');
-
-  if (section === 'meals') {
-    meals.classList.remove('hidden');
-    grocery.classList.add('hidden');
-    btnMeals.classList.add('active');
-    btnGrocery.classList.remove('active');
-  } else {
-    meals.classList.add('hidden');
-    grocery.classList.remove('hidden');
-    btnMeals.classList.remove('active');
-    btnGrocery.classList.add('active');
-  }
+// =================== WORKOUT ===================
+function buildWorkoutDaySelector() {
+  document.getElementById('workout-day-selector').innerHTML = workoutDays.map((d, i) =>
+    `<button class="workout-day-btn ${i === currentWorkoutDay ? 'active' : ''}" onclick="selectWorkoutDay(${i})">
+      <span class="w-emoji">${d.emoji}</span>
+      <span>${d.name}</span>
+      <span class="w-label">${d.label}</span>
+    </button>`
+  ).join('');
 }
 
-// Init
+function renderWorkoutDay() {
+  const day = workoutDays[currentWorkoutDay];
+
+  document.getElementById('workout-header').innerHTML =
+    `<div class="day-header">
+      <h2>${day.label}</h2>
+      <span class="tag tag-training">${day.name}</span>
+    </div>
+    <p style="text-align:center;color:#888;font-size:13px;margin-bottom:20px;">${day.subtitle}</p>`;
+
+  document.getElementById('workout-warmup').innerHTML =
+    `<div class="warmup-card">
+      <div class="warmup-title">🔥 Échauffement</div>
+      <div class="warmup-desc">${day.warmup}</div>
+    </div>`;
+
+  document.getElementById('workout-container').innerHTML = day.exercises.map((ex, i) =>
+    `<div class="exercise-card" style="animation-delay:${i * 0.08}s" onclick="toggleDetail(this)">
+      <div class="exercise-header">
+        <span class="exercise-num">${i + 1}</span>
+        <div class="exercise-info">
+          <div class="exercise-name">${ex.name}</div>
+          <div class="exercise-sets">${ex.sets}</div>
+          <div class="exercise-weight">${ex.weight}</div>
+        </div>
+        <span class="exercise-chevron">▼</span>
+      </div>
+      <div class="exercise-detail">${ex.desc}</div>
+    </div>`
+  ).join('');
+}
+
+function selectWorkoutDay(i) { currentWorkoutDay = i; buildWorkoutDaySelector(); renderWorkoutDay(); }
+
+function toggleDetail(card) {
+  const detail = card.querySelector('.exercise-detail');
+  const chevron = card.querySelector('.exercise-chevron');
+  detail.classList.toggle('show');
+  chevron.classList.toggle('open');
+}
+
+// =================== INIT ===================
 buildDaySelector();
 renderDay();
 buildGroceryList();
+buildWorkoutDaySelector();
+renderWorkoutDay();
 </script>
 </body>
 </html>
